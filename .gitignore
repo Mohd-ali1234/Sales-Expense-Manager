@@ -1,0 +1,15 @@
+node_modules/
+dist/
+build/
+!desktop/build/
+*.db
+*.db-journal
+.venv/
+__pycache__/
+*.pyc
+*.spec
+.claude/
+desktop/dist/
+backend/dist/
+backend/build/
+frontend/dist/

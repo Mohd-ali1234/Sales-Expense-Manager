@@ -1,0 +1,40 @@
+{
+  "name": "paan-ledger",
+  "productName": "Paan Ledger",
+  "version": "1.0.0",
+  "description": "Paan Ledger - Sales & expense manager",
+  "author": "Mohd-ali1234",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --publish never",
+    "release": "electron-builder --win --publish always"
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.9"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.paanledger.app",
+    "productName": "Paan Ledger",
+    "directories": { "output": "dist", "buildResources": "build" },
+    "files": ["main.js", "preload.js", "package.json"],
+    "extraResources": [
+      { "from": "../backend/dist/paan-ledger-server.exe", "to": "server/paan-ledger-server.exe" }
+    ],
+    "win": { "target": "nsis", "icon": "build/icon.png" },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "shortcutName": "Paan Ledger"
+    },
+    "publish": [
+      { "provider": "github", "owner": "Mohd-ali1234", "repo": "Sales-Expense-Manager", "releaseType": "release" }
+    ]
+  }
+}
