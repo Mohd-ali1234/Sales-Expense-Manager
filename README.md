@@ -6,6 +6,11 @@ Daily sales / expense ledger and a drag-and-drop monthly calculation builder.
 - **Backend:** FastAPI + SQLite (`backend/`)
 - **Desktop app:** Electron (`desktop/`) — bundles the backend, auto-updates from GitHub Releases
 
+## Sign in
+
+The app asks for a login. Default account: ID `admin`, password `admin123`.
+Accounts live in the `users` table of the SQLite database (passwords are stored hashed).
+
 ## Install (users)
 
 Download **Paan-Ledger-Setup-x.y.z.exe** from the [Releases](../../releases) page and run it.

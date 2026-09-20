@@ -128,3 +128,25 @@
 .upd-prog i { display: block; height: 100%; background: #fff; transition: width .3s; }
 @media print { .update-bar { display: none; } }
 @media (max-width: 760px) { .nb-ver button { display: none; } }
+
+.nb-user { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.nb-user span { font-weight: 600; color: var(--ink); }
+.nb-user button { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 5px 13px; font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer; color: #b4382b; }
+.nb-user button:hover { background: #fdecec; }
+@media (max-width: 760px) { .nb-user span { display: none; } }
+@media print { .nb-user { display: none; } }
+
+.login-page { min-height: 100vh; display: grid; place-items: center; padding: 20px; background: radial-gradient(900px 500px at 50% -10%, #cfe8d6 0%, transparent 70%), var(--bg); }
+.login-card { width: 100%; max-width: 380px; display: grid; gap: 14px; background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 32px 30px; box-shadow: 0 20px 60px rgba(31,42,36,.12); text-align: center; }
+.login-logo { width: 72px; height: 72px; border-radius: 20px; margin: 0 auto; box-shadow: 0 10px 24px rgba(31,122,77,.35); }
+.login-card h1 { margin: 6px 0 0; font-size: 24px; }
+.login-card > p { margin: -6px 0 6px; color: var(--muted); font-size: 14px; }
+.login-card label { display: grid; gap: 6px; text-align: left; }
+.login-card label > span { font-size: 12px; font-weight: 600; color: var(--muted); }
+.login-card input { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 12px; font: inherit; font-size: 15px; background: #faf9f5; }
+.login-card input:focus { outline: none; border-color: var(--green); background: #fff; box-shadow: 0 0 0 3px rgba(31,122,77,.15); }
+.pw { position: relative; }
+.pw input { padding-right: 62px; }
+.pw button { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); border: 0; background: none; color: var(--green-d); font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; padding: 6px 8px; }
+.login-err { background: #fdecea; color: #a12622; border: 1px solid #f5c2be; border-radius: 10px; padding: 9px 12px; font-size: 13px; text-align: left; }
+.login-btn { width: 100%; padding: 13px; font-size: 15px; margin-top: 4px; }

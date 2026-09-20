@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import Builder from "./Builder.jsx";
+import Login from "./Login.jsx";
+import { getToken, logout, setUnauthorizedHandler } from "./auth.js";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
@@ -51,7 +53,7 @@ const CHECK_LABEL = {
   error: "Check failed — retry",
 };
 
-function Shell() {
+function Shell({ user, onLogout }) {
   const d = window.desktop;
   const [version, setVersion] = useState("");
   const [upd, setUpd] = useState(null);
@@ -101,6 +103,10 @@ function Shell() {
               </button>
             </div>
           )}
+          <div className="nb-user">
+            <span title="Signed in">👤 {user}</span>
+            <button onClick={onLogout}>Logout</button>
+          </div>
         </div>
       </header>
       {page === "ledger" ? <App /> : <Builder />}
@@ -108,4 +114,26 @@ function Shell() {
   );
 }
 
-createRoot(document.getElementById("root")).render(<Shell />);
+function Root() {
+  const [user, setUser] = useState(undefined); // undefined = still checking the saved login
+
+  const signOut = () => {
+    logout();
+    setUser(null);
+  };
+
+  useEffect(() => {
+    setUnauthorizedHandler(signOut);
+    if (!getToken()) return setUser(null);
+    fetch("/api/me")
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then((d) => setUser(d.username))
+      .catch(() => setUser(null));
+  }, []);
+
+  if (user === undefined) return null;
+  if (!user) return <Login onDone={setUser} />;
+  return <Shell user={user} onLogout={signOut} />;
+}
+
+createRoot(document.getElementById("root")).render(<Root />);
