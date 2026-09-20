@@ -39,7 +39,7 @@ cd desktop; npm install; npm run dist      # installer ends up in desktop/dist
 1. Commit your code changes (`git add -A; git commit -m "..."`).
 2. Run:
    ```powershell
-   .\scripts\release.ps1 1.0.1
+   .\scripts\release.ps1 1.0.1 "What changed in this version"
    ```
    This bumps the version, tags `v1.0.1` and pushes. GitHub Actions
    (`.github/workflows/release.yml`) builds the installer and publishes a GitHub Release.

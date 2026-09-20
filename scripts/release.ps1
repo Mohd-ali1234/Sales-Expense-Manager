@@ -1,4 +1,4 @@
-# Usage:  .\scripts\release.ps1 1.0.1
+# Usage:  .\scripts\release.ps1 1.0.1 "What changed in this version"
 # Bumps the app version, commits, tags and pushes. GitHub Actions then builds
 # the installer and publishes the release; installed apps will offer the update.
 param(
@@ -11,6 +11,8 @@ Set-Location (Split-Path $PSScriptRoot -Parent)
 
 if ($Version -notmatch '^\d+\.\d+\.\d+$') { throw "Version must look like 1.2.3" }
 if (git status --porcelain) { throw "You have uncommitted changes. Commit them first (git add -A; git commit -m '...')." }
+if (git tag --list "v$Version") { throw "Tag v$Version already exists - use a higher version number." }
+if (-not $Notes) { $Notes = (git log -1 --format=%s) }   # default: your last commit message
 
 Push-Location desktop
 npm version $Version --no-git-tag-version --allow-same-version | Out-Null
