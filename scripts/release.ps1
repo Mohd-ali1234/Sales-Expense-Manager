@@ -1,7 +1,10 @@
 # Usage:  .\scripts\release.ps1 1.0.1
 # Bumps the app version, commits, tags and pushes. GitHub Actions then builds
 # the installer and publishes the release; installed apps will offer the update.
-param([Parameter(Mandatory = $true)][string]$Version)
+param(
+    [Parameter(Mandatory = $true)][string]$Version,
+    [string]$Notes = ""
+)
 # Continue: git prints harmless CRLF warnings on stderr, which "Stop" would treat as errors.
 $ErrorActionPreference = "Continue"
 Set-Location (Split-Path $PSScriptRoot -Parent)
@@ -15,7 +18,7 @@ Pop-Location
 
 git add desktop/package.json desktop/package-lock.json
 if (git status --porcelain) { git commit -m "Release v$Version" }
-git tag "v$Version"
+git tag -a "v$Version" -m "v$Version`n`n$Notes"
 git push origin HEAD
 if ($LASTEXITCODE) { throw "git push failed" }
 git push origin "v$Version"
