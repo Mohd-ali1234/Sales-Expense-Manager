@@ -1,7 +1,7 @@
 {
   "name": "paan-ledger",
   "productName": "Paan Ledger",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Paan Ledger - Sales & expense manager",
   "author": "Mohd-ali1234",
   "main": "main.js",
