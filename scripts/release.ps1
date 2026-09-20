@@ -2,7 +2,8 @@
 # Bumps the app version, commits, tags and pushes. GitHub Actions then builds
 # the installer and publishes the release; installed apps will offer the update.
 param([Parameter(Mandatory = $true)][string]$Version)
-$ErrorActionPreference = "Stop"
+# Continue: git prints harmless CRLF warnings on stderr, which "Stop" would treat as errors.
+$ErrorActionPreference = "Continue"
 Set-Location (Split-Path $PSScriptRoot -Parent)
 
 if ($Version -notmatch '^\d+\.\d+\.\d+$') { throw "Version must look like 1.2.3" }
@@ -16,5 +17,7 @@ git add desktop/package.json desktop/package-lock.json
 if (git status --porcelain) { git commit -m "Release v$Version" }
 git tag "v$Version"
 git push origin HEAD
+if ($LASTEXITCODE) { throw "git push failed" }
 git push origin "v$Version"
+if ($LASTEXITCODE) { throw "pushing the tag failed" }
 Write-Host "Pushed v$Version. Watch the build: gh run watch  (or the Actions tab on GitHub)"

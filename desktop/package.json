@@ -20,12 +20,25 @@
   "build": {
     "appId": "com.paanledger.app",
     "productName": "Paan Ledger",
-    "directories": { "output": "dist", "buildResources": "build" },
-    "files": ["main.js", "preload.js", "package.json"],
-    "extraResources": [
-      { "from": "../backend/dist/paan-ledger-server.exe", "to": "server/paan-ledger-server.exe" }
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json"
     ],
-    "win": { "target": "nsis", "icon": "build/icon.png" },
+    "extraResources": [
+      {
+        "from": "../backend/dist/paan-ledger-server.exe",
+        "to": "server/paan-ledger-server.exe"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
@@ -35,7 +48,12 @@
       "artifactName": "Paan-Ledger-Setup-${version}.${ext}"
     },
     "publish": [
-      { "provider": "github", "owner": "Mohd-ali1234", "repo": "Sales-Expense-Manager", "releaseType": "release" }
+      {
+        "provider": "github",
+        "owner": "Mohd-ali1234",
+        "repo": "Sales-Expense-Manager",
+        "releaseType": "release"
+      }
     ]
   }
 }
