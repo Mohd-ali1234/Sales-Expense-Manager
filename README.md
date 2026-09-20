@@ -37,12 +37,12 @@ cd desktop; npm install; npm run dist      # installer ends up in desktop/dist
 ## Publish a new version (and have the app show "update available")
 
 1. Commit your code changes (`git add -A; git commit -m "..."`).
-2. Run (needs the GitHub CLI `gh` logged in, plus Python/Node as for a local build):
+2. Run:
    ```powershell
    .\scriptselease.ps1 1.0.1
    ```
-   It bumps the version, builds the frontend, backend exe and installer, tags `v1.0.1`,
-   pushes, and uploads the installer to a new GitHub Release.
+   This bumps the version, tags `v1.0.1` and pushes. GitHub Actions
+   (`.github/workflows/release.yml`) builds the installer and publishes a GitHub Release.
 3. Installed apps check for updates on start (and every 4 hours, or via the
    **Check for updates** button in the top bar). When a newer release exists a green banner
    appears: **Download update -> Restart & update**.
