@@ -8,7 +8,7 @@ Daily sales / expense ledger and a drag-and-drop monthly calculation builder.
 
 ## Install (users)
 
-Download **Paan Ledger Setup x.y.z.exe** from the [Releases](../../releases) page and run it.
+Download **Paan-Ledger-Setup-x.y.z.exe** from the [Releases](../../releases) page and run it.
 Your data is stored locally in `%APPDATA%\Paan Ledger\pan_parlour.db` and is kept across updates.
 
 ## Run in development
@@ -39,8 +39,7 @@ cd desktop; npm install; npm run dist      # installer ends up in desktop/dist
 1. Commit your code changes (`git add -A; git commit -m "..."`).
 2. Run:
    ```powershell
-   .\scripts
-elease.ps1 1.0.1
+   .\scripts\release.ps1 1.0.1
    ```
    This bumps the version, tags `v1.0.1` and pushes. GitHub Actions
    (`.github/workflows/release.yml`) builds the installer and publishes a GitHub Release.
