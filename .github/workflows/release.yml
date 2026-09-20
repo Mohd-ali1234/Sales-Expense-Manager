@@ -48,3 +48,15 @@ jobs:
         run: |
           npm ci
           npx electron-builder --win --publish always
+
+      - name: Add release notes from the tag message
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch --force origin "refs/tags/$($env:GITHUB_REF_NAME):refs/tags/$($env:GITHUB_REF_NAME)"
+          $notes = git tag -l --format='%(contents)' $env:GITHUB_REF_NAME
+          if ($notes) {
+            Set-Content -Path notes.md -Value $notes -Encoding utf8
+            gh release edit $env:GITHUB_REF_NAME --notes-file notes.md --title $env:GITHUB_REF_NAME.TrimStart('v')
+          }
