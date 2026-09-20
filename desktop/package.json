@@ -31,7 +31,8 @@
       "allowToChangeInstallationDirectory": true,
       "perMachine": false,
       "createDesktopShortcut": true,
-      "shortcutName": "Paan Ledger"
+      "shortcutName": "Paan Ledger",
+      "artifactName": "Paan-Ledger-Setup-${version}.${ext}"
     },
     "publish": [
       { "provider": "github", "owner": "Mohd-ali1234", "repo": "Sales-Expense-Manager", "releaseType": "release" }
