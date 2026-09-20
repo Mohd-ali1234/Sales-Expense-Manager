@@ -34,7 +34,7 @@ Pop-Location
 
 Write-Host "==> Committing and tagging"
 git add desktop/package.json desktop/package-lock.json
-git commit -m "Release v$Version"
+if (git status --porcelain) { git commit -m "Release v$Version" }
 git tag "v$Version"
 git push origin HEAD
 git push origin "v$Version"
